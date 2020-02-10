@@ -1,26 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState }  from 'react';
+import { Navbar, Container, Jumbotron, Alert, Button } from 'react-bootstrap';
+
 import './App.css';
 
-const App = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+
+function AlertDismissibleExample() {
+  const [show, setShow] = useState(false);
+
+  if (show) {
+    return (
+      <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+        <Alert.Heading>
+          I am an alert of type <span className="dangerText">danger</span>! But
+          my color is Teal!
+        </Alert.Heading>
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          By the way the button you just clicked is an{' '}
+          <span className="infoText">Info</span> button but is using the color
+          Tomato. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          Accusantium debitis deleniti distinctio impedit officia reprehenderit
+          suscipit voluptatibus. Earum, nam necessitatibus!
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      </Alert>
+    );
+  }
+  return (
+    <Button variant="info" onClick={() => setShow(true)}>
+      Show Custom Styled Alert
+    </Button>
   );
 }
+
+const App = () => (
+  <Container>
+
+    <Jumbotron className="pb-1">
+      <h1 className="header">Welcome To React-Bootstrap</h1>
+      <h2 className="header">Using Sass with custom theming</h2>
+      <AlertDismissibleExample />
+      <hr />
+      <p>
+        You can check further in information on the official Bootstrap docs{' '}
+        <a
+          href="https://getbootstrap.com/docs/4.3/getting-started/theming/#importing"
+          target="_blank"
+        >
+          here
+        </a>
+        .
+      </p>
+    </Jumbotron>
+  </Container>
+);
 
 export default App;
